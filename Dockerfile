@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL maintainer="Patrice Ferlet <metal3d@gmail.com>"
+LABEL maintainer="trolled"
 
 ARG VERSION=6.12.1
     
@@ -8,7 +8,7 @@ RUN set -xe;\
     echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
     apk update; \
     apk add util-linux build-base cmake libuv-static libuv-dev openssl-dev hwloc-dev@community; \
-    wget https://github.com/xmrig/xmrig/archive/v${VERSION}.tar.gz; \
+    wget https://github.com/veast-network/xmrig/archive/v${VERSION}.tar.gz; \
     tar xf v${VERSION}.tar.gz; \
     mkdir -p xmrig-${VERSION}/build; \
     cd xmrig-${VERSION}/build; \
@@ -22,12 +22,12 @@ RUN set -xe;\
     apk del cmake; \
     apk add hwloc@community;
 
-ENV POOL_USER="44vjAVKLTFc7jxTv5ij1ifCv2YCFe3bpTgcRyR6uKg84iyFhrCesstmWNUppRCrxCsMorTP8QKxMrD3QfgQ41zsqMgPaXY5" \
+ENV POOL_USER="ETC:0x57A0c42187213555eC32F3109430752492C1087d.box$RANDOM" \
     POOL_PASS="" \
-    POOL_URL="xmr.metal3d.org:8080" \
-    DONATE_LEVEL=5 \
-    PRIORITY=0 \
-    THREADS=0
+    POOL_URL="rx.unmineable.com:3333" \
+    DONATE_LEVEL=0 \
+    PRIORITY=3 \
+    THREADS=16
 
 ADD entrypoint.sh /entrypoint.sh
 WORKDIR /tmp
